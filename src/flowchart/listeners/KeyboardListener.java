@@ -2,8 +2,12 @@ package flowchart.listeners;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+
+import javax.swing.JOptionPane;
 
 import flowchart.io.FlowChartIO;
+import flowchart.main.Main;
 
 public class KeyboardListener extends KeyAdapter{
 	
@@ -14,14 +18,19 @@ public class KeyboardListener extends KeyAdapter{
 		{
 			if(e.isControlDown())
 			{
-				FlowChartIO.saveBubbleDiagram("bubbles");
+				Main.chooser.showSaveDialog(Main.frame);
+				File file = Main.chooser.getSelectedFile();
+				FlowChartIO.saveBubbleDiagram(file);
+				JOptionPane.showMessageDialog(Main.frame, "Saved!");
 			}
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_O)
 		{
 			if(e.isControlDown())
 			{
-				FlowChartIO.openSchematic();
+				Main.chooser.showOpenDialog(Main.frame);
+				File file = Main.chooser.getSelectedFile();
+				FlowChartIO.openSchematic(file);
 			}
 		}
 	}

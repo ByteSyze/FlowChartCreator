@@ -43,10 +43,10 @@ public class FlowChartIO {
 		}
 	}
 	
-	public static void saveBubbleDiagram(String outputName)
+	public static void saveBubbleDiagram(File file)
 	{
 		try {
-			PrintWriter writer = new PrintWriter("bubbles"+".bd");
+			PrintWriter writer = new PrintWriter(file);
 			
 			writer.println("Bubbles:");
 			for(Bubble bubble : Main.flowChart.getBubbles())
@@ -59,7 +59,10 @@ public class FlowChartIO {
 			{
 				for(Arrow arrow : bubble.getArrows())
 				{
-					writer.println("arrow:"+arrow.getStart().getId()+":"+arrow.getEnd().getId());
+					//Both start and end hold the arrow, so only add an arrow if it is start
+					//to prevent duplicate arrows.
+					if(arrow.getStart() == bubble)
+						writer.println("arrow:"+arrow.getStart().getId()+":"+arrow.getEnd().getId());
 				}
 			}
 			
@@ -71,10 +74,10 @@ public class FlowChartIO {
 		}
 	}
 	
-	public static void openSchematic()
+	public static void openSchematic(File file)
 	{
 		try {
-			FileReader reader = new FileReader("bubbles.bd");
+			FileReader reader = new FileReader(file);
 			BufferedReader bReader = new BufferedReader(reader);
 			
 			String currentLine;

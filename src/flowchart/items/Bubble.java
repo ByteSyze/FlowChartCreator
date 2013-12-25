@@ -18,6 +18,8 @@ public class Bubble {
 	boolean loop = false; // A state where the bubble will loop if it is meant to stay in this state for any reason
 	String loopText;
 	
+	boolean selected = false;
+	
 	Point location;
 	
 	boolean moving = false;
@@ -93,6 +95,16 @@ public class Bubble {
 	public int getId()
 	{
 		return id;
+	}
+	
+	public boolean isSelected()
+	{
+		return selected;
+	}
+	
+	public void setSelected(boolean selected)
+	{
+		this.selected = selected;
 	}
 
 }

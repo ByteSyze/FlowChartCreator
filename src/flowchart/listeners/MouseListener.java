@@ -13,6 +13,17 @@ public class MouseListener extends MouseAdapter{
 	{
 		Bubble bubble = Main.flowChart.getBubbleAt(e.getX(), e.getY());
 		
+		if(e.getButton() == MouseEvent.BUTTON3)
+		{
+			if(bubble.isSelected())
+			{
+				bubble.setSelected(false);
+			}
+			else
+				bubble.setSelected(true);
+			Main.flowChart.repaint();
+		}
+		
 		if(bubble != null)
 		{
 			bubble.setMoving(true);

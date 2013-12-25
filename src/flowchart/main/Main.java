@@ -1,5 +1,6 @@
 package flowchart.main;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 import flowchart.listeners.KeyboardListener;
@@ -7,16 +8,19 @@ import flowchart.listeners.KeyboardListener;
 public class Main {
 	
 	public static FlowChart flowChart = new FlowChart();
+	public static JFrame frame;
+	
+	public static JFileChooser chooser = new JFileChooser();
 	
 	public static void main(String[] args)
 	{
 		
-		JFrame f = new JFrame("Bubble Diagram");
-		f.addKeyListener(new KeyboardListener());
-		f.add(flowChart);
-		f.setSize(1280,720);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setVisible(true);
+		frame = new JFrame("Bubble Diagram");
+		frame.addKeyListener(new KeyboardListener());
+		frame.add(flowChart);
+		frame.setSize(1280,720);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 		
 	}
 

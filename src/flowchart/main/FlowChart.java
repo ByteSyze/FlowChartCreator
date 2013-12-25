@@ -69,7 +69,12 @@ public class FlowChart extends JPanel{
 			
 			g.setColor(Color.WHITE);
 			g.fillOval(bubble.getLocation().x, bubble.getLocation().y, bubble.getRadius(), bubble.getRadius());
-			g.setColor(Color.BLACK);
+			
+			if(bubble.isSelected())
+				g.setColor(Color.BLUE);
+			else
+				g.setColor(Color.BLACK);
+			
 			g.drawOval(bubble.getLocation().x, bubble.getLocation().y, bubble.getRadius(), bubble.getRadius());
 			g.drawString(bubble.getText(), bubble.getLocation().x-(metrics.stringWidth(bubble.getText())/2)+(bubble.getRadius()/2), bubble.getLocation().y+(int)(metrics.getHeight()*2));
 		}
@@ -119,6 +124,24 @@ public class FlowChart extends JPanel{
 			}
 		}
 		return null;
+	}
+	
+	public List<Bubble> getSelectedBubbles()
+	{
+		List<Bubble> selected = new ArrayList<Bubble>();
+		for(Bubble bubble : bubbles)
+		{
+			if(bubble.isSelected())
+			{
+				selected.add(bubble);
+			}
+		}
+		return selected;
+	}
+	
+	public void removeBubble(Bubble bubble)
+	{
+		this.bubbles.remove(bubble);
 	}
 
 }
