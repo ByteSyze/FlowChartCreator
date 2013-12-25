@@ -11,10 +11,12 @@ public class Bubble {
 	int radius; // Radius of the bubble
 	String text; // The text this bubble holds
 	
-	boolean loop; // A state where the bubble will loop if it is meant to stay in this state for any reason
+	boolean loop = false; // A state where the bubble will loop if it is meant to stay in this state for any reason
 	String loopText;
 	
 	Point location;
+	
+	boolean moving = false;
 	
 	public Bubble(int x, int y, int radius, String text)
 	{
@@ -31,7 +33,7 @@ public class Bubble {
 	
 	public void addArrowTo(Bubble bubble)
 	{
-		arrows.add(new Arrow(this.location,bubble.location));
+		arrows.add(new Arrow(this,bubble));
 	}
 	
 	public List<Arrow> getArrows()
@@ -64,6 +66,21 @@ public class Bubble {
 			}
 		}
 		return false;
+	}
+	
+	public boolean isMoving()
+	{
+		return moving;
+	}
+	
+	public void setMoving(boolean moving)
+	{
+		this.moving = moving;
+	}
+	
+	public void setLocation(int x, int y)
+	{
+		location = new Point(x,y);
 	}
 
 }

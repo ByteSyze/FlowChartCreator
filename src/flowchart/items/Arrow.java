@@ -1,39 +1,24 @@
 package flowchart.items;
 
-import java.awt.Point;
-
 public class Arrow {
 	
-	Point startPoint;
-	Point endPoint;
-	
-	
-	public Arrow(int x1, int y1, int x2, int y2)
-	{
-		startPoint = new Point(x1,y1);
-		endPoint = new Point(x2,y2);
-	}
-	
-	public Arrow(Point start, Point end)
-	{
-		startPoint = start;
-		endPoint = end;
-	}
+	Bubble start;
+	Bubble end;
 	
 	public Arrow(Bubble start, Bubble end)
 	{
-		startPoint = start.location;
-		endPoint = end.location;
+		this.start = start;
+		this.end = end;
 	}
 	
-	public Point getStart()
+	public Bubble getStart()
 	{
-		return startPoint;
+		return start;
 	}
 	
-	public Point getEnd()
+	public Bubble getEnd()
 	{
-		return endPoint;
+		return end;
 	}
 
 }
