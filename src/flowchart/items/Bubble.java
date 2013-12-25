@@ -29,10 +29,41 @@ public class Bubble {
 		arrows.add(arrow);
 	}
 	
+	public void addArrowTo(Bubble bubble)
+	{
+		arrows.add(new Arrow(this.location,bubble.location));
+	}
+	
 	public List<Arrow> getArrows()
 	{
 		return arrows;
 	}
 	
+	public Point getLocation()
+	{
+		return location;
+	}
+	
+	public int getRadius()
+	{
+		return radius;
+	}
+	
+	public String getTextArea()
+	{
+		return text;
+	}
+	
+	public boolean contains(int x, int y)
+	{
+		if(location.x+radius >= x && location.x-radius <= x)
+		{
+			if(location.y+radius >= y && location.y-radius <= y)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
