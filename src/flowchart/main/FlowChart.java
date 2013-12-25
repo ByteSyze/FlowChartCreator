@@ -61,7 +61,8 @@ public class FlowChart extends JPanel{
 		{
 			for(Arrow arrow : bubble.getArrows())
 			{
-				g.drawLine(arrow.getStart().getLocation().x+bubble.getRadius()/2,arrow.getStart().getLocation().y+bubble.getRadius()/2,arrow.getEnd().getLocation().x+bubble.getRadius()/2,arrow.getEnd().getLocation().y+bubble.getRadius()/2);
+				if(arrow.getStart() == bubble)
+					g.drawLine(arrow.getStart().getLocation().x+bubble.getRadius()/2,arrow.getStart().getLocation().y+bubble.getRadius()/2,arrow.getEnd().getLocation().x+bubble.getRadius()/2,arrow.getEnd().getLocation().y+bubble.getRadius()/2);
 			}
 			
 			g.setFont(font);
@@ -141,7 +142,20 @@ public class FlowChart extends JPanel{
 	
 	public void removeBubble(Bubble bubble)
 	{
+		for(Arrow arrow : bubble.getArrows())
+		{
+			arrow.getStart().removeArrow(arrow);
+			arrow.getEnd().removeArrow(arrow);
+		}
 		this.bubbles.remove(bubble);
+	}
+	
+	public void removeBubbles(List<Bubble> bubbles)
+	{
+		for(Bubble bubble : bubbles)
+		{
+			removeBubble(bubble);
+		}
 	}
 
 }

@@ -40,9 +40,24 @@ public class Bubble {
 		arrows.add(arrow);
 	}
 	
-	public void addArrowTo(Bubble bubble)
+	public void removeArrow(Arrow arrow)
 	{
-		arrows.add(new Arrow(this,bubble));
+		arrows.remove(arrow);
+	}
+	
+	public void removeAllArrows()
+	{
+		for(Arrow arrow : arrows)
+		{
+			arrows.remove(arrow);
+		}
+	}
+	
+	public void addArrowTo(Bubble bubble)
+	{	
+		Arrow arrow = new Arrow(this,bubble);
+		bubble.addArrow(arrow);
+		this.addArrow(arrow);
 	}
 	
 	public List<Arrow> getArrows()

@@ -33,6 +33,11 @@ public class KeyboardListener extends KeyAdapter{
 				FlowChartIO.openSchematic(file);
 			}
 		}
+		else if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+		{
+			Main.flowChart.removeBubbles(Main.flowChart.getSelectedBubbles());
+			Main.flowChart.repaint();
+		}
 	}
 
 }
