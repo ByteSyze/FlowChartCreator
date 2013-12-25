@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Bubble {
 	
+	public static int BUBBLE_COUNT = 0;
+	
+	int id;
+	
 	private List<Arrow> arrows = new ArrayList<Arrow>();
 	
 	int radius; // Radius of the bubble
@@ -18,8 +22,11 @@ public class Bubble {
 	
 	boolean moving = false;
 	
-	public Bubble(int x, int y, int radius, String text)
+	public Bubble(int id, int x, int y, int radius, String text)
 	{
+		this.id = id;
+		BUBBLE_COUNT++;
+		
 		location = new Point(x,y);
 		
 		this.radius = radius;
@@ -51,7 +58,7 @@ public class Bubble {
 		return radius;
 	}
 	
-	public String getTextArea()
+	public String getText()
 	{
 		return text;
 	}
@@ -81,6 +88,11 @@ public class Bubble {
 	public void setLocation(int x, int y)
 	{
 		location = new Point(x,y);
+	}
+	
+	public int getId()
+	{
+		return id;
 	}
 
 }

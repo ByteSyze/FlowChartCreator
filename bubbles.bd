@@ -1,0 +1,6 @@
+bubble:0:100:100:50:Test123
+bubble:1:200:50:50:Beep
+bubble:2:300:300:50:Bubble3
+arrow:0:1
+arrow:0:2
+end

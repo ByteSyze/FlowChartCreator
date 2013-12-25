@@ -33,12 +33,15 @@ public class FlowChart extends JPanel{
 		this.addMouseListener(listener);
 		this.addMouseMotionListener(listener);
 		
-		Bubble bub1 = new Bubble(100,100,50,"Test123");
-		Bubble bub2 = new Bubble(200,50,50,"Beep");
+		/*Bubble bub1 = new Bubble(Bubble.BUBBLE_COUNT,100,100,50,"Test123");
+		Bubble bub2 = new Bubble(Bubble.BUBBLE_COUNT,200,50,50,"Beep");
+		Bubble bub3 = new Bubble(Bubble.BUBBLE_COUNT,300,300,50,"Bubble3");
 		
 		bub1.addArrowTo(bub2);
+		bub1.addArrowTo(bub3);
 		bubbles.add(bub1);
 		bubbles.add(bub2);
+		bubbles.add(bub3);*/
 		
 	}
 	
@@ -48,23 +51,8 @@ public class FlowChart extends JPanel{
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		//drawBubbles(g2d);
-		for(Bubble bubble : bubbles)
-		{
-			for(Arrow arrow : bubble.getArrows())
-			{
-				g.drawLine(arrow.getStart().getLocation().x+bubble.getRadius()/2,arrow.getStart().getLocation().y+bubble.getRadius()/2,arrow.getEnd().getLocation().x+bubble.getRadius()/2,arrow.getEnd().getLocation().y+bubble.getRadius()/2);
-			}
-			
-			g.setFont(font);
-			metrics = g.getFontMetrics();
-			
-			g.setColor(Color.WHITE);
-			g.fillOval(bubble.getLocation().x, bubble.getLocation().y, bubble.getRadius(), bubble.getRadius());
-			g.setColor(Color.BLACK);
-			g.drawOval(bubble.getLocation().x, bubble.getLocation().y, bubble.getRadius(), bubble.getRadius());
-			g.drawString(bubble.getTextArea(), bubble.getLocation().x-(metrics.stringWidth(bubble.getTextArea())/2)+(bubble.getRadius()/2), bubble.getLocation().y+(int)(metrics.getHeight()*2));
-		}
+		drawBubbles(g2d);
+		
 	}
 	
 	public void drawBubbles(Graphics g)
@@ -83,8 +71,18 @@ public class FlowChart extends JPanel{
 			g.fillOval(bubble.getLocation().x, bubble.getLocation().y, bubble.getRadius(), bubble.getRadius());
 			g.setColor(Color.BLACK);
 			g.drawOval(bubble.getLocation().x, bubble.getLocation().y, bubble.getRadius(), bubble.getRadius());
-			g.drawString(bubble.getTextArea(), bubble.getLocation().x-(metrics.stringWidth(bubble.getTextArea())/2)+(bubble.getRadius()/2), bubble.getLocation().y+(int)(metrics.getHeight()*2));
+			g.drawString(bubble.getText(), bubble.getLocation().x-(metrics.stringWidth(bubble.getText())/2)+(bubble.getRadius()/2), bubble.getLocation().y+(int)(metrics.getHeight()*2));
 		}
+	}
+	
+	public List<Bubble> getBubbles()
+	{
+		return bubbles;
+	}
+	
+	public void setBubbles(List<Bubble> bubbles)
+	{
+		this.bubbles = bubbles;
 	}
 	
 	public Bubble getBubbleAt(int x, int y)
@@ -104,6 +102,18 @@ public class FlowChart extends JPanel{
 		for(Bubble bubble : bubbles)
 		{
 			if(bubble.isMoving())
+			{
+				return bubble;
+			}
+		}
+		return null;
+	}
+	
+	public Bubble getBubbleById(int id)
+	{
+		for(Bubble bubble : bubbles)
+		{
+			if(bubble.getId() == id)
 			{
 				return bubble;
 			}
