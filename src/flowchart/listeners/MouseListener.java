@@ -8,6 +8,9 @@ import flowchart.main.Main;
 
 public class MouseListener extends MouseAdapter{
 	
+	public static int x;
+	public static int y;
+	
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
@@ -15,12 +18,19 @@ public class MouseListener extends MouseAdapter{
 		
 		if(e.getButton() == MouseEvent.BUTTON3)
 		{
-			if(bubble.isSelected())
+			if(e.isShiftDown())
 			{
-				bubble.setSelected(false);
+				if(bubble.isSelected())
+				{
+					bubble.setSelected(false);
+				}
+				else
+					bubble.setSelected(true);
 			}
 			else
-				bubble.setSelected(true);
+			{
+				Main.flowChart.setSelectedBubble(bubble);
+			}
 			Main.flowChart.repaint();
 		}
 		
@@ -33,6 +43,9 @@ public class MouseListener extends MouseAdapter{
 	@Override
 	public void mouseDragged(MouseEvent e)
 	{
+		x = e.getX();
+		y = e.getY();
+		
 		Bubble bubble = Main.flowChart.getMovingBubble();
 		
 		if(bubble != null)
@@ -54,6 +67,13 @@ public class MouseListener extends MouseAdapter{
 		{
 			bubble.setMoving(false);
 		}
+	}
+	
+	@Override
+	public void mouseMoved(MouseEvent e)
+	{
+		x = e.getX();
+		y = e.getY();
 	}
 
 }

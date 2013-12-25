@@ -9,6 +9,7 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import flowchart.items.Arrow;
@@ -142,10 +143,11 @@ public class FlowChart extends JPanel{
 	
 	public void removeBubble(Bubble bubble)
 	{
-		for(Arrow arrow : bubble.getArrows())
+		for(int i = 0; i < bubble.getArrows().size(); i++)
 		{
-			arrow.getStart().removeArrow(arrow);
+			Arrow arrow = bubble.getArrows().get(i);
 			arrow.getEnd().removeArrow(arrow);
+			arrow.getStart().removeArrow(arrow);
 		}
 		this.bubbles.remove(bubble);
 	}
@@ -156,6 +158,24 @@ public class FlowChart extends JPanel{
 		{
 			removeBubble(bubble);
 		}
+	}
+	
+	public void setSelectedBubble(Bubble bubble)
+	{
+		for(Bubble b : bubbles)
+		{
+			if(b.isSelected())
+			{
+				b.setSelected(false);
+			}
+		}
+		bubble.setSelected(true);		
+	}
+	
+	public void addBubble()
+	{
+		String text = JOptionPane.showInputDialog("Bubble text:");
+		bubbles.add(new Bubble(Bubble.BUBBLE_COUNT, listener.x-25,listener.y-25,50,text));
 	}
 
 }
